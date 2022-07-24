@@ -557,6 +557,7 @@ void pollHIDdevice()
 		}
 		}
 	}
+	delay(50);
 }
 
 
@@ -742,7 +743,8 @@ unsigned char getHIDDeviceReport(unsigned char CurrentDevive)
 		DEBUG_OUT("0x%02X ", receiveDataBuffer[i]);
 	}
 	DEBUG_OUT("\n");
-	sendProtocolMSG(MSG_TYPE_HID_INFO, len, CurrentDevive, HIDdevice[CurrentDevive].interface, HIDdevice[CurrentDevive].rootHub, receiveDataBuffer);
+	//sendProtocolMSG(MSG_TYPE_HID_INFO, len, CurrentDevive, HIDdevice[CurrentDevive].interface, HIDdevice[CurrentDevive].rootHub, receiveDataBuffer);
+	sendHidPollMSG(MSG_TYPE_HID_INFO, len, HIDdevice[CurrentDevive].type, HIDdevice[CurrentDevive].interface, HIDdevice[CurrentDevive].rootHub, receiveDataBuffer, VendorProductID[HIDdevice[CurrentDevive].rootHub].idVendorL, VendorProductID[HIDdevice[CurrentDevive].rootHub].idVendorH, VendorProductID[HIDdevice[CurrentDevive].rootHub].idProductL, VendorProductID[HIDdevice[CurrentDevive].rootHub].idVendorH);
 	parseHIDDeviceReport(receiveDataBuffer, len, CurrentDevive);
 	return (ERR_SUCCESS);
 }
