@@ -929,7 +929,7 @@ unsigned char checkRootHubConnections()
 					disableRootHubPort(0);	//todo really need to reset register?
 					rootHubDevice[0].status = ROOT_DEVICE_CONNECTED;
 					DEBUG_OUT("Device at root hub %i connected\n", 0);
-					sendProtocolMSG(MSG_TYPE_CONNECTED,0, 0x01, 0x01, 0x01, 0);
+					sendProtocolMSG(MSG_TYPE_CONNECTED,0, 0x00, 0x00, 0x00, 0);
 					s = initializeRootHubConnection(0);
 				}
 			}
@@ -939,7 +939,7 @@ unsigned char checkRootHubConnections()
     			resetHubDevices(0);
 				disableRootHubPort(0);
 				DEBUG_OUT("Device at root hub %i disconnected\n", 0);
-					sendProtocolMSG(MSG_TYPE_DISCONNECTED,0, 0x01, 0x01, 0x01, 0);
+					sendProtocolMSG(MSG_TYPE_DISCONNECTED,0, 0x00, 0x00, 0x00, 0);
 				s = ERR_USB_DISCON;
 			}
 			if(USB_HUB_ST & bUHS_H1_ATTACH)
@@ -950,7 +950,7 @@ unsigned char checkRootHubConnections()
 					disableRootHubPort(1);	//todo really need to reset register?
 					rootHubDevice[1].status = ROOT_DEVICE_CONNECTED;
 					DEBUG_OUT("Device at root hub %i connected\n", 1);
-					sendProtocolMSG(MSG_TYPE_CONNECTED,0, 0x02, 0x02, 0x02, 0);
+					sendProtocolMSG(MSG_TYPE_CONNECTED,0, 0x01, 0x01, 0x01, 0);
 					s = initializeRootHubConnection(1);
 				}
 			}
@@ -960,7 +960,7 @@ unsigned char checkRootHubConnections()
     			resetHubDevices(1);
 				disableRootHubPort(1);
 				DEBUG_OUT("Device at root hub %i disconnected\n", 1);
-					sendProtocolMSG(MSG_TYPE_DISCONNECTED,0, 0x02, 0x02, 0x02, 0);
+					sendProtocolMSG(MSG_TYPE_DISCONNECTED,0, 0x01, 0x01, 0x01, 0);
 				s = ERR_USB_DISCON;
 			}
 	}
